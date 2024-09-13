@@ -9,7 +9,7 @@ DATABASE_URL = "postgresql+pg8000://pyclient:pyclient@localhost/packets"
 def main(packet_handler:PacketHandler, interface):
     # Define the BPF filter
     bpf_filter = "not dst net 192.168.1.0/24 and tcp"
-    capture = pyshark.LiveRingCapture(interface=interface,ring_file_size=32768,bpf_filter=bpf_filter)
+    capture = pyshark.LiveRingCapture(interface=interface,ring_file_size=1024,bpf_filter=bpf_filter)
 
     # Capture packets in a loop and handle each one
     for packet in capture.sniff_continuously():
