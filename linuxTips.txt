@@ -1,0 +1,41 @@
+installing linux tips:
+use xrdp - remote desktop for linux
+- develop through VSCode, has openssh support
+
+NetworkSNiffer:
+install postgrssql
+-  sudo apt install postgresql
+	- then change to postgres user: sudo su postgres
+	- cd ~
+	- createuser <USERNAME> -P --interactive
+	- run postgres cmd: psql
+	- CREATE DATABASE <DATABASE_NAME>;
+	- exit
+enable remote connection to database:
+- nano /etc/postgresql/X/main/pg_hba.conf
+	- add the line: host     all     all     192.168.1.0/24     trust
+	(this enables connections from all ips in local network
+- nano /etc/postgresql/X/main/postgresql.conf
+	- change the change the ‘localhost’ to ‘*’.
+add the line 
+- install tshark: sudo apt install -y tshark
+install PGAdmin admin console
+- 
+
+Goals:
+Stage1: 
+- packet sniffing server with good sampling rate
+- working DATABASE
+- web interface with summary of outgoing device trafic
+- destenation break down per device, with domain names
+
+Stage2:
+- packet per second
+- overall outgoing traffic
+- Anomaly detection
+- DB backup
+
+architecture:
+- packet capture service to DB
+- DB routine to summarize hourly
+- web api to display data
